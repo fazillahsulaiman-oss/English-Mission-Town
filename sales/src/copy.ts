@@ -6,7 +6,8 @@ export const COPY = {
     headline: 'Anak Suka Main Game? Jadikan Waktu Itu Peluang Berlatih English.',
     sub: 'Teroka 6 dunia pembelajaran dengan misi 8 soalan—daripada kenal perkataan hingga bina ayat, lengkap dengan bintang, sticker dan ganjaran meriah.',
     support: 'Buka di telefon, tablet atau komputer. Pilih tahap anak dan mula berlatih.',
-    ctaPrimary: 'Lihat Pakej Bermula RM49',
+    /** {price} = BASIC price from config.ts */
+    ctaPrimary: 'Lihat Pakej Bermula RM{price}',
     ctaSecondary: 'Cuba Demo',
     labels: ['Tahun 1–3', 'English dengan bantuan perkataan', 'Main ikut masa sendiri'],
     mockupCaption: 'Ilustrasi paparan permainan English Mission Town.',

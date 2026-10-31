@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from 'react';
 import { Mascot } from '../../src/art/characters';
 import { COPY } from './copy';
-import { PACKAGES, REFERENCE_VALUES, referenceValuesVisible } from './config';
+import { PACKAGES, REFERENCE_VALUES, referenceValuesVisible, withPrice } from './config';
 import { Faq } from './sections/Faq';
 import { Pricing, type Mode } from './sections/Pricing';
 import { Device } from './svg/Devices';
@@ -67,7 +67,7 @@ function Hero({ reduced, ctaRef }: { reduced: boolean; ctaRef: React.RefObject<H
           <p className="hero-support">{COPY.hero.support}</p>
           <div className="hero-ctas" ref={ctaRef}>
             <a className="btn btn-primary btn-lg" href="#pakej" data-cta="nav">
-              {COPY.hero.ctaPrimary}
+              {withPrice(COPY.hero.ctaPrimary, PACKAGES[0]!.price)}
             </a>
             <a className="btn btn-outline btn-lg" href="#demo" data-cta="nav">
               {COPY.hero.ctaSecondary}

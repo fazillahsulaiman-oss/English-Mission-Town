@@ -1,5 +1,5 @@
 import { COPY } from '../copy';
-import { PACKAGES, REFERENCE_VALUES, SITE, promotionActive, referenceValuesVisible, type PackageConfig } from '../config';
+import { PACKAGES, REFERENCE_VALUES, SITE, promotionActive, referenceValuesVisible, withPrice, type PackageConfig } from '../config';
 import { FluentIcon } from '../svg/Illustrations';
 
 export type Mode = 'customer' | 'owner';
@@ -54,7 +54,7 @@ export function Pricing({ mode }: { mode: Mode }) {
           <p className="plan-desc">{pkg.description}</p>
           <Price pkg={pkg} mode={mode} />
           <a className={`btn ${pkg.id === 'pro' ? 'btn-primary' : 'btn-outline'} btn-block`} href={pkg.ctaHref} data-cta="purchase" data-plan-cta={pkg.id}>
-            {pkg.ctaLabel}
+            {withPrice(pkg.ctaLabel, pkg.price)}
           </a>
           {pkg.featuresIntro && <p className="plan-intro">{pkg.featuresIntro}</p>}
           <ul className="plan-list">

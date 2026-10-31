@@ -23,7 +23,7 @@ test('navigation anchors point at real sections', async ({ page }) => {
   for (const h of hrefs.filter((x) => x !== '#')) {
     expect(await page.locator(h).count(), h).toBe(1);
   }
-  await page.getByRole('link', { name: 'Lihat Pakej Bermula RM49' }).click();
+  await page.getByRole('link', { name: 'Lihat Pakej Bermula RM29' }).click();
   await expect(page.locator('#pakej')).toBeInViewport();
   await page.getByRole('link', { name: 'Cuba Demo' }).first().click();
   await expect(page.locator('#demo')).toBeInViewport();
@@ -33,8 +33,8 @@ test('purchase buttons stay as placeholders and nothing claims a purchase', asyn
   await page.goto('/');
   const ctas = page.locator('[data-cta=purchase]');
   await expect(ctas).toHaveCount(2);
-  await expect(ctas.nth(0)).toHaveText('Pilih BASIC — RM49');
-  await expect(ctas.nth(1)).toHaveText('Pilih PRO — RM89');
+  await expect(ctas.nth(0)).toHaveText('Pilih BASIC — RM29');
+  await expect(ctas.nth(1)).toHaveText('Pilih PRO — RM39');
   for (const a of await ctas.all()) await expect(a).toHaveAttribute('href', '#');
   await ctas.nth(1).click();
   await expect(page.getByText(/berjaya/i)).toHaveCount(0);

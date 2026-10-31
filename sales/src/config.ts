@@ -25,6 +25,7 @@ export interface PackageConfig {
   price: number;
   /** Real previous price in RM. Leave null unless it is a genuine, verifiable price. */
   originalPrice: number | null;
+  /** Button text. {price} is replaced with the price. */
   ctaLabel: string;
   /** Checkout link. Keep '#' until a real checkout exists. */
   ctaHref: string;
@@ -59,9 +60,9 @@ export const PACKAGES: PackageConfig[] = [
     id: 'basic',
     name: 'Pakej BASIC',
     description: 'Untuk fokus pada satu Tahun pilihan.',
-    price: 49,
+    price: 29,
     originalPrice: null,
-    ctaLabel: 'Pilih BASIC — RM49',
+    ctaLabel: 'Pilih BASIC — RM{price}',
     ctaHref: '#',
     ribbon: null,
     featuresIntro: null,
@@ -81,9 +82,9 @@ export const PACKAGES: PackageConfig[] = [
     id: 'pro',
     name: 'Pakej PRO',
     description: 'Untuk akses tiga Tahun dan lebih ruang berkembang.',
-    price: 89,
+    price: 39,
     originalPrice: null,
-    ctaLabel: 'Pilih PRO — RM89',
+    ctaLabel: 'Pilih PRO — RM{price}',
     ctaHref: '#',
     ribbon: 'Pilihan Lebih Lengkap',
     featuresIntro: 'Semua ciri BASIC, serta:',
@@ -111,6 +112,11 @@ export const REFERENCE_VALUES: Record<string, number> = {
 export function referenceValuesVisible(mode: 'customer' | 'owner'): boolean {
   if (mode === 'owner') return true;
   return SITE.showReferenceValues && SITE.referenceValuesApproved;
+}
+
+/** Replaces {price} in copy with the current price. */
+export function withPrice(text: string, price: number): string {
+  return text.replace(/\{price\}/g, String(price));
 }
 
 export function promotionActive(): boolean {
