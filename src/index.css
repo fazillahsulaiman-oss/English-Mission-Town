@@ -1,0 +1,205 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Baloo 2', 'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-body: 'Nunito', ui-rounded, system-ui, sans-serif;
+  --color-ink: #2f2f48;
+  --color-ink-soft: #4b4b6b;
+  --color-sky: #cdeffd;
+  --color-cream: #fffaf0;
+  --color-sun: #facc15;
+  --color-leaf: #22c55e;
+  --color-coral: #fb7185;
+  --color-teal: #14b8a6;
+  --color-grape: #8b5cf6;
+}
+
+:root {
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  background: #fffaf0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, #cdeffd 0%, #e9f9ff 40%, #fffaf0 100%);
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Soft dimensional buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 52px;
+  min-width: 52px;
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.1;
+  color: var(--color-ink);
+  background: #fff;
+  border: 3px solid var(--color-ink);
+  box-shadow: 0 5px 0 var(--color-ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+.btn:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--color-ink);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: #facc15;
+}
+.btn-go {
+  background: #4ade80;
+}
+.btn-blue {
+  background: #7dd3fc;
+}
+.btn-pink {
+  background: #f9a8d4;
+}
+.btn-purple {
+  background: #c4b5fd;
+}
+.btn-lg {
+  min-height: 64px;
+  font-size: 1.5rem;
+  padding: 0.8rem 2rem;
+}
+.btn-sm {
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.4rem 1rem;
+}
+.btn-icon {
+  padding: 0;
+  width: 52px;
+  height: 52px;
+}
+
+.card {
+  background: #fff;
+  border: 3px solid var(--color-ink);
+  border-radius: 1.75rem;
+  box-shadow: 0 6px 0 rgba(47, 47, 72, 0.9);
+}
+
+.tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 52px;
+  min-width: 52px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 1rem;
+  font-weight: 800;
+  font-size: 1.2rem;
+  background: #fff;
+  border: 3px solid var(--color-ink);
+  box-shadow: 0 4px 0 var(--color-ink);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.tile[aria-pressed='true'] {
+  background: #fef08a;
+  outline: 4px dashed #f59e0b;
+  outline-offset: 3px;
+}
+
+.slot {
+  min-height: 60px;
+  min-width: 60px;
+  border-radius: 1rem;
+  border: 3px dashed #94a3b8;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+.slot.slot-over {
+  background: #fef9c3;
+  border-color: #f59e0b;
+}
+.slot.slot-ready {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+:focus-visible {
+  outline: 4px solid #2563eb;
+  outline-offset: 3px;
+  border-radius: 12px;
+}
+
+.word-help {
+  text-decoration: underline dotted 3px #8b5cf6;
+  text-underline-offset: 5px;
+  color: #5b21b6;
+  font-weight: 800;
+  cursor: pointer;
+  background: #f5f3ff;
+  border-radius: 0.5rem;
+  padding: 0 0.2rem;
+  min-height: 32px;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+.newest-sticker {
+  animation: wiggle 1.6s ease-in-out infinite;
+}
+@keyframes pulse-halo {
+  0%, 100% { transform: scale(0.96); opacity: 0.35; }
+  50% { transform: scale(1.06); opacity: 0.8; }
+}
+.pulse-halo {
+  animation: pulse-halo 2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes slide-up {
+  from { transform: translateY(60px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.slide-up {
+  animation: slide-up 0.25s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .newest-sticker, .pulse-halo, .slide-up { animation: none; }
+}
+.reduced-motion .newest-sticker,
+.reduced-motion .pulse-halo,
+.reduced-motion .slide-up { animation: none; }
