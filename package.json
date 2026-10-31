@@ -11,7 +11,11 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "content:report": "vite-node scripts/content-report.ts"
+    "content:report": "vite-node scripts/content-report.ts",
+    "sales:dev": "vite --config vite.sales.config.ts",
+    "sales:build": "tsc -b && vite build --config vite.sales.config.ts",
+    "sales:preview": "vite preview --config vite.sales.config.ts",
+    "sales:test": "playwright test --config playwright.sales.config.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

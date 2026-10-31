@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh embed: English Mission Town</title>
+    <style>
+      body { margin: 0; font-family: system-ui, sans-serif; background: #f4f4f4; }
+      .emt-frame { display: block; width: 100%; border: 0; }
+      /* Fixed heights if auto-resize is not enabled */
+      .emt-frame { height: 9000px; }
+      @media (max-width: 760px) { .emt-frame { height: 12500px; } }
+    </style>
+  </head>
+  <body>
+    <!-- Replace src with the URL where the sales page is hosted. -->
+    <iframe
+      class="emt-frame"
+      id="emt-sales"
+      src="./index.html"
+      title="English Mission Town: halaman jualan dan demo permainan"
+      loading="lazy"
+    ></iframe>
+
+    <!-- Optional auto-resize. Works only when SITE.embedParentOrigin in config.ts is set to THIS page's origin. -->
+    <script>
+      (function () {
+        var frame = document.getElementById('emt-sales');
+        // Origin of the sales page (where the iframe content is hosted):
+        var SALES_ORIGIN = new URL(frame.src, location.href).origin;
+        window.addEventListener('message', function (event) {
+          if (event.origin !== SALES_ORIGIN) return; // ignore messages from anywhere else
+          if (event.source !== frame.contentWindow) return;
+          var data = event.data;
+          if (!data || data.type !== 'emt-sales:height' || typeof data.height !== 'number') return;
+          frame.style.height = Math.min(Math.max(data.height, 600), 40000) + 'px';
+        });
+      })();
+    </script>
+  </body>
+</html>
