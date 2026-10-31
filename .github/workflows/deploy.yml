@@ -26,6 +26,9 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+      # Sales page at /sales/. The owner review page is never published.
+      - run: npx vite build --config vite.sales.config.ts --outDir ../dist/sales --emptyOutDir
+      - run: rm -f dist/sales/owner.html && test -f dist/sales/index.html
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
